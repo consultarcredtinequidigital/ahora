@@ -229,22 +229,22 @@
     </div>
 
     <div class="container" id="loading-message" style="display:none;">
-        <p style="text-align:center;">Un momento, estamos consultando si aplica para un crédito...</p>
+        <p style="text-align:center; margin-bottom: 0;">Un momento, estamos consultando si aplica para un crédito...</p>
     </div>
 
     <div class="container" id="resultado-credito" style="display:none;">
         <div class="credito-info">
             <h3 class="titulo-credito">Resultado de tu consulta</h3>
-            <p class="monto-prestamo">Cantidad que desea solicitar: <strong>$<span id="txt-monto-solicitado">3.000.000</span> COP</strong></p>
-            <p>Cuotas de plazo: <strong><span id="txt-cuotas-meses">18</span> meses</strong></p>
-            <p>Interés mensual estimado: <strong>$<span id="txt-interes-mensual">45.000</span></strong></p>
-            <p>Pago total estimado: <strong>$<span id="txt-pago-total">3.810.000</span></strong></p>
-            <p class="monto-cuota">Cuota mensual: $<span id="txt-cuota-mensual">211.666</span></p>
+            <p class="monto-prestamo">Cantidad que desea solicitar: <strong>$<span id="txt-monto-solicitado"></span> COP</strong></p>
+            <p>Cuotas de plazo: <strong><span id="txt-cuotas-meses"></span> meses</strong></p>
+            <p>Interés mensual estimado: <strong>$<span id="txt-interes-mensual"></span></strong></p>
+            <p>Pago total estimado: <strong>$<span id="txt-pago-total"></span></strong></p>
+            <p class="monto-cuota">Cuota mensual: $<span id="txt-cuota-mensual"></span></p>
         </div>
 
         <div class="mt-4">
             <div class="mb-3">
-                <label for="range-monto" class="form-label font-weight-bold">Monto a solicitar: <strong id="val-monto">$3.000.000</strong></label>
+                <label for="range-monto" class="form-label font-weight-bold">Monto a solicitar: <strong id="val-monto"></strong></label>
                 <input type="range" class="form-range" id="range-monto" min="100000" max="5000000" step="50000" value="3000000">
                 <div class="d-flex justify-content-between text-muted small">
                     <span>$100.000</span>
@@ -253,7 +253,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="range-plazo" class="form-label font-weight-bold">Plazo del crédito: <strong id="val-plazo">18 meses</strong></label>
+                <label for="range-plazo" class="form-label font-weight-bold">Plazo del crédito: <strong id="val-plazo"></strong></label>
                 <input type="range" class="form-range" id="range-plazo" min="12" max="48" step="1" value="18">
                 <div class="d-flex justify-content-between text-muted small">
                     <span>12 meses</span>
@@ -296,7 +296,7 @@
                 const monto = parseInt(rangeMonto.value);
                 const meses = parseInt(rangePlazo.value);
                 
-                const tasaInteres = 0.015; 
+                const tasaInteres = 0.001; 
 
                 const interesMensual = monto * tasaInteres;
                 const interesTotal = interesMensual * meses;
@@ -316,6 +316,7 @@
             rangeMonto.addEventListener('input', actualizarSimulador);
             rangePlazo.addEventListener('input', actualizarSimulador);
 
+            // Ejecución inicial para pintar los valores correctos basados en el interés del 0.1%
             actualizarSimulador();
 
             btnConsultar.addEventListener('click', async (e) => {
